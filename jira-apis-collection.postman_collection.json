@@ -1,0 +1,57 @@
+{
+	"info": {
+		"_postman_id": "b021d072-6336-4f83-b51d-e5e941d9968c",
+		"name": "jira-apis-collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28447185"
+	},
+	"item": [
+		{
+			"name": "create-a-userstory",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "username",
+							"value": "{{userName}}",
+							"type": "string"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"fields\": {\r\n        \"project\": {\r\n            \"id\": \"10003\"\r\n        },\r\n        \"issuetype\": {\r\n            \"id\": \"10013\"\r\n        },\r\n        \"summary\": \"Create new user story for demo mar 2025 batch 1\"\r\n    }\r\n       \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://{{domainName}}.atlassian.net/rest/api/3/issue",
+					"protocol": "https",
+					"host": [
+						"{{domainName}}",
+						"atlassian",
+						"net"
+					],
+					"path": [
+						"rest",
+						"api",
+						"3",
+						"issue"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

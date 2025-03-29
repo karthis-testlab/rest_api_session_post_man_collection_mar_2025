@@ -1,0 +1,390 @@
+{
+	"info": {
+		"_postman_id": "2a6bb843-5889-4d2f-9ba7-2c8a64e67b5b",
+		"name": "week2-day1",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28447185"
+	},
+	"item": [
+		{
+			"name": "create_a_new_record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has Created\", function () {\r",
+							"    pm.response.to.have.status(\"Created\");\r",
+							"});\r",
+							"\r",
+							"var responseJson = pm.response.json();\r",
+							"pm.collectionVariables.set('sysId', responseJson.result.sys_id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"RESTAPISessionMAR2025\",\r\n    \"description\": \"Create new record using Post method\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{pathName}}/:tableName",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{pathName}}",
+						":tableName"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "{{tableName}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve_a_record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate the given sys_id is available in the response\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result.sys_id).to.eql(pm.collectionVariables.get(\"sysId\"));\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{pathName}}/:tableName/:sys_id",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{pathName}}",
+						":tableName",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "{{tableName}}"
+						},
+						{
+							"key": "sys_id",
+							"value": "{{sysId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update_a_record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has OK\", function () {\r",
+							"    pm.response.to.have.status(\"OK\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Validate the descritiopn value after the PUT method got run\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.result.description).to.eql(\"Update existing record using PUT method\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"description\": \"Update existing record using PUT method\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{pathName}}/:tableName/:sys_id",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{pathName}}",
+						":tableName",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "{{tableName}}"
+						},
+						{
+							"key": "sys_id",
+							"value": "{{sysId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "delet_a_record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has No Content\", function () {\r",
+							"    pm.response.to.have.status(\"No Content\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{pathName}}/:tableName/:sys_id",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{pathName}}",
+						":tableName",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "{{tableName}}"
+						},
+						{
+							"key": "sys_id",
+							"value": "{{sysId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "validate_deletion_isSuccess",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Status code name has Not Found\", function () {\r",
+							"    pm.response.to.have.status(\"Not Found\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocal}}://{{hostname}}/{{pathName}}/:tableName/:sys_id",
+					"protocol": "{{protocal}}",
+					"host": [
+						"{{hostname}}"
+					],
+					"path": [
+						"{{pathName}}",
+						":tableName",
+						":sys_id"
+					],
+					"variable": [
+						{
+							"key": "tableName",
+							"value": "{{tableName}}"
+						},
+						{
+							"key": "sys_id",
+							"value": "{{sysId}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "pathName",
+			"value": "api/now/table",
+			"type": "string"
+		},
+		{
+			"key": "tableName",
+			"value": "incident",
+			"type": "string"
+		},
+		{
+			"key": "sysId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
