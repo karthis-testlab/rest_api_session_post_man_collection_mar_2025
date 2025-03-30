@@ -1,0 +1,22 @@
+[
+	{
+		"shortDescription": "RESTAPISessionMAR2025 1",
+		"state": "1",
+		"desc": "Create new record using Post method 1"
+	},
+	{
+		"shortDescription": "RESTAPISessionMAR2025 2",		
+		"state": "1",
+		"desc": "Create new record using Post method 2"
+	},
+	{
+		"shortDescription": "RESTAPISessionMAR2025 3",		
+		"state": "1",
+		"desc": "Create new record using Post method 3"
+	},
+	{
+		"shortDescription": "RESTAPISessionMAR2025 4",		
+		"state": "1",
+		"desc": "Create new record using Post method 4"
+	}
+]
