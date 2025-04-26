@@ -52,12 +52,10 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://dev265761.service-now.com/api/now/table/incident/eca73ac4c3a0221082c2feac0501316f",
-					"protocol": "https",
+					"raw": "{{protocal}}://{{hostname}}/api/now/table/incident/eca73ac4c3a0221082c2feac0501316f",
+					"protocol": "{{protocal}}",
 					"host": [
-						"dev265761",
-						"service-now",
-						"com"
+						"{{hostname}}"
 					],
 					"path": [
 						"api",
@@ -116,7 +114,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://dev265761.service-now.com/api/now/table/:tableName/:sysId",
+					"raw": "https://dev265761.service-now.com/api/now/table/:tableName?sysparm_fields=sys_id,number,category,short_description,description&sysparm_query=number=INC0010398",
 					"protocol": "https",
 					"host": [
 						"dev265761",
@@ -127,17 +125,22 @@
 						"api",
 						"now",
 						"table",
-						":tableName",
-						":sysId"
+						":tableName"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id,number,category,short_description,description"
+						},
+						{
+							"key": "sysparm_query",
+							"value": "number=INC0010398"
+						}
 					],
 					"variable": [
 						{
 							"key": "tableName",
 							"value": "incident"
-						},
-						{
-							"key": "sysId",
-							"value": "1c832706732023002728660c4cf6a7b9"
 						}
 					]
 				}
